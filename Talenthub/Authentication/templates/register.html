@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="../static/css/register.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        form {
+            background-color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #3498db;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            display: inline-block;
+            border: 1px solid #555;
+            box-sizing: border-box;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #444;
+            color: #fff;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2077b3;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+        }
+
+        a:hover {
+            color: #2077b3;
+        }
+
+        /* Additional Styles for Enhanced Look */
+        input[type="file"] {
+            border: none;
+            background-color: #555;
+            color: #fff;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            form {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="{% url 'register' %}" enctype="multipart/form-data">
+        <h1>Registration Form</h1>
+        <center>{{msg}}</center>
+        {% csrf_token %}
+        
+        <h2>Personal Details</h2>
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <input type="password" name="password" placeholder="Your Password" required />
+        <input type="tel" name="cont_no" placeholder="Your Phone No" required />
+        <input type="text" name="ad_no" placeholder="Your Aadhar No" required />
+        
+        <h2>Qualifications</h2>
+        
+        <h2>10th Class</h2>
+        <input type="text" name="t_s" placeholder="School Name" required />
+        <input type="text" name="t_m" placeholder="Marks/CGPA" required />
+        <select name="t_p_y">
+            {% for i in yrs %}
+            <option value="{{i}}">{{i}}</option>
+            {% endfor %}
+        </select>
+        
+        <h2>Inter/Diploma</h2>
+        <input type="text" name="i_s" placeholder="College Name" required />
+        <input type="text" name="i_m" placeholder="Marks/CGPA" required />
+        <select name="i_p_y">
+            {% for i in yrs %}
+            <option value="{{i}}">{{i}}</option>
+            {% endfor %}
+        </select>
+        
+        <h2>UG Details</h2>
+        <input type="text" name="u_s" placeholder="College/University Name" required />
+        <input type="text" name="u_m" placeholder="Marks/CGPA" required />
+        <select name="u_p_y">
+            {% for i in yrs %}
+            <option value="{{i}}">{{i}}</option>
+            {% endfor %}
+        </select>
+        
+        <h2>Other (If Any)</h2>
+        <input type="text" name="o_s_s" placeholder="Specialization" value="" />
+        <input type="text" name="o_s" placeholder="College/University Name" value="" />
+        <input type="text" name="o_m" placeholder="Marks/CGPA" value="" />
+        <select name="o_p_y">
+            {% for i in yrs %}
+            <option value="{{i}}">{{i}}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="zoomid" placeholder="ZoomId" required>
+        <h2>Resume</h2>
+        <input type="file" name="resume" placeholder="Upload">
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <p style="margin-top: 20px;">Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
+</body>
+</html>

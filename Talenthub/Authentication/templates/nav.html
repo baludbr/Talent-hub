@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Navbar Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .custom-navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .custom-navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .custom-navbar a:hover {
+            background-color: #555;
+        }
+
+        .custom-navbar a.profile {
+            float: right;
+        }
+
+        @media screen and (max-width: 600px) {
+            .custom-navbar a:not(:first-child) {
+                display: none;
+            }
+
+            .custom-navbar a.icon {
+                float: right;
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .custom-navbar.responsive {
+                position: relative;
+            }
+
+            .custom-navbar.responsive a.icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+
+            .custom-navbar.responsive a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="custom-navbar">
+    {% if request.session.role == 'user' %}
+        <a href="{% url 'openings' %}">Openings</a>
+        <a href="{% url 'applied' %}">Applied</a>
+        
+    {% endif %}
+    
+    {% if request.session.role == 'admin' %}
+        <a href="{% url 'add_job' %}">Add a Job</a>
+        <a href="{% url 'lists' %}">Applied Candidates</a>
+        <!-- <a href="#">Process</a> -->
+    {% endif %}
+    
+    <a href="#" class="icon">&#9776;</a>
+    <a href="{% url 'profile' %}" class="profile">Profile</a>
+    <a href="{% url 'logout' %}" class="profile">Log Out</a>
+</div>
+
+</body>
+</html>

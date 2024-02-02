@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Interview</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 20px;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            max-width: 400px; /* Adjust based on your design */
+            margin: auto;
+            background-color: #fff; /* Set background color if needed */
+            padding: 20px;
+        }
+
+        .card-title {
+            color: #007bff;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            color: #6c757d;
+            font-size: 16px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .form-control {
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 16px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    {% include 'nav.html' %}
+    <center><h4>Current Status:</h4><p>{{status}}(InProgress)</p></center>
+    
+    <div class="container">
+        
+        <div class="card">
+            <h2 class="card-title">Schedule Interview</h2>
+            <form id="interviewForm" method="POST" action="{% url 'interview'%}">
+                {%csrf_token%}
+                <label for="date">Interview Date:</label>
+                <input type="date" id="date" name="date" class="form-control" required>
+
+                <label for="zoomId">Zoom ID:</label>
+                <input type="text" id="zoomId" name='zoomId' value={{zoom_id}} class="form-control" required>
+
+                <label for="promotion">Promotion Options:</label>
+                <select id="promotion" name="promotion" class="form-control">
+                    <option value="Technical Round 1">Technical Round 1</option>
+                    <option value="Technical Round 2">Technical Round 2</option>
+                    <option value="Technical Round 3">Technical Round 3</option>
+                    <option value="HR Round">Promote to HR Round</option>
+                    <option value="rejected">Rejected</option>
+                    <option value="accepted">Accepted</option>
+                </select>
+                <button type="submit" class="btn-primary">Schedule Interview</button>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>

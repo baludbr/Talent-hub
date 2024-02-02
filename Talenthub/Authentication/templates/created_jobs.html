@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-5qoVmE3Fa0ReVd0/4+/as2aIamJuuD8C/PS7R9ZXyEHH8zu+7ZYYU7MX/ULW6FNR6/cA9Ffln+2mGi+ITe6Z3Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Applied Jobs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .job-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        .action-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .action-btn i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'nav.html'%}
+    <div class="qqq">
+        <div class="job-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Company</th>
+                        <th>Location</th>
+                        <th>Salary</th>
+                        <th>Published At</th>
+                        <th>Application Deadline</th>
+                        <th>See Applicants List</th>
+                        <th>Stop Applications</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in jobs %}
+                        <tr>
+                            <td>{{ job.title }}</td>
+                            <td>{{ job.description }}</td>
+                            <td>{{ job.company }}</td>
+                            <td>{{ job.location }}</td>
+                            <td>{{ job.salary }}</td>
+                            <td>{{ job.published_at }}</td>
+                            <td>{{ job.application_deadline }}</td>
+                            <td>
+                                <a class="action-btn" href="{% url 'applicants_job' job.id %}">
+                                    <i class="fas fa-eye"></i>Show Applicants
+                                </a>
+                            </td>
+                            <td>
+                                {% if job.application_status %}
+                                    <a class="action-btn" href="#">
+                                        <i class="fas fa-times"></i>Close Job
+                                    </a>
+                                {% else %}
+                                    <span class="action-btn">
+                                        <i class="fas fa-lock"></i>Job Closed
+                                    </span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function deleteJob(jobId) {
+            // Implement your delete logic here
+            console.log('Delete job with ID:', jobId);
+        }
+    </script>
+</body>
+
+</html>

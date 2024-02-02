@@ -1,0 +1,86 @@
+<!-- candidates/templates/candidates/profile.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .rounded-circle {
+    border-radius: 60%;
+}
+    </style>
+</head>
+<body>
+    {% include 'nav.html' %}
+    <div class="container mt-5">
+        <div class="card p-5">
+            <h5 class="card-title">User Profile</h5>
+            <div class="text-center mb-4">
+                <!-- Placeholder user image icon -->
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR71R0RbJJD-vUKz1BBPgh2RvUjb9MhP2DUbvVhS4O1eRBrm-kAkPW-qRFmMrA6rhz-DrY&usqp=CAU" alt="User Icon" class="rounded-circle" width="150">
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <td>{{ candidate.user.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td>{{ candidate.user.email }}</td>
+                            </tr>
+                            <tr>
+                                <th>Contact Number</th>
+                                <td>{{ candidate.user.contact_no }}</td>
+                            </tr>
+                            <tr>
+                                <th>Aadhar Number</th>
+                                <td>{{ candidate.user.aadhar_no }}</td>
+                            </tr>
+                            <!-- Add similar rows for other user information -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-md-6">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>Zoom ID</th>
+                                <td>{{ candidate.zoom_id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Role</th>
+                                <td>{{ candidate.role }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h5 class="card-title">Update Password</h5>
+                    <form method="post" action="">
+                        <!-- Add form fields for updating password -->
+                        {% csrf_token %}
+                        <!-- Add fields for updating password -->
+                        <button type="submit" class="btn btn-primary">Update Password</button>
+                    </form>
+                    <h5 class="card-title mt-4">Download Resume</h5>
+                    {% if candidate.resume %}
+                        <a href="{{ candidate.resume.url }}" download="{{ candidate.user.name }}_Resume.pdf" class="btn btn-success">Download Resume</a>
+                    {% else %}
+                        <p>No resume available.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
