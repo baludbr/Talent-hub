@@ -10,5 +10,4 @@ setuptools==57.4.0
 sqlparse==0.2.4
 typing_extensions==4.9.0
 tzdata==2023.4
-sqlite>=3.8.3,<4.0.0
 
