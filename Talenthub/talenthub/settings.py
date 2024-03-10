@@ -74,22 +74,22 @@ APPEND_SLASH=False
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 # DATABASES = {
-#         'default': {
-#             'ENGINE': 'djongo',
-#             'NAME': 'Talenthub',
-#             'ENFORCE_SCHEMA': False,
-#             'CLIENT': {
-#                 'host': 'mongodb+srv://balaji:balaji@cluster0.retbig8.mongodb.net/'
-#             }  
-#         }
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
 # }
+DATABASES = {
+        'default': {
+            'ENGINE': 'djongo',
+            'NAME': 'Talenthub',
+            'ENFORCE_SCHEMA': False,
+            'CLIENT': {
+                'host': 'mongodb+srv://2100031449cseh:EVY0Z1KMb94KmoFU@cluster0.ly1mujd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+            }  
+        }
+}
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
